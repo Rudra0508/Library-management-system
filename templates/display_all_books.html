@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background for contrast */
+            color: #333; /* Dark text for readability */
+            margin: 0;
+            padding: 20px; /* Padding around the body */
+        }
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #2c3e50; /* Darker color for the heading */
+            margin-bottom: 30px; /* Spacing below the heading */
+        }
+        .greeting-box {
+            background-color: #e7f3fe; /* Light blue background */
+            border: 1px solid #b3d7ff; /* Light blue border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 15px; /* Padding inside the box */
+            text-align: center; /* Center align text */
+            font-size: 20px; /* Font size for greeting text */
+            color: darkblue; /* Dark blue text color */
+            margin: 10px auto; /* Centered with margin above and below */
+            width: fit-content; /* Width adjusts to content size */
+        }
+        .fetch-button {
+            display: block; /* Make button block-level */
+            width: 200px; /* Fixed width for button */
+            padding: 15px; /* Padding inside the button */
+            margin: 0 auto 30px; /* Centered with margin below */
+            font-size: 18px; /* Font size for button text */
+            color: white; /* Text color for button */
+            background-color: #3498db; /* Button background color */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .fetch-button:hover {
+            background-color: #2980b9; /* Darker shade on hover */
+        }
+        table {
+            width: 100%; /* Full width table */
+            border-collapse: collapse; /* Collapse borders for a cleaner look */
+            margin-top: 20px; /* Space above the table */
+        }
+        th, td {
+            padding: 10px; /* Padding inside table cells */
+            text-align: left; /* Left-align text in cells */
+            border-bottom: 1px solid #ddd; /* Bottom border for rows */
+        }
+        th {
+            background-color: #3498db; /* Header background color */
+            color: white; /* Header text color */
+        }
+        tr:hover {
+            background-color: #f1f1f1; /* Highlight row on hover */
+        }
+        p {
+            text-align: center; /* Center align paragraph text */
+            font-size: 18px; /* Font size for paragraph text */
+        }
+    </style>
+</head>
+<body>
+    <h1>Library Books</h1>
+
+    {% if session['logged_in'] %}
+    <div class="greeting-box">
+        HELLO {{ session['username'].upper() }}
+    </div>
+    {% endif %}
+
+    <!-- Button to fetch books -->
+    <form action="/display_books/display_all_books" method="post">
+        <button class="fetch-button" type="submit">Show Books</button>
+    </form>
+
+    <!-- Display books in a table if available -->
+    {% if books %}
+    <table>
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Total Copies</th>
+                <th>Available Copies</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book[0] }}</td> <!-- Assuming name is the first column -->
+                <td>{{ book[1] }}</td> <!-- Assuming author is the second column -->
+                <td>{{ book[2] }}</td> <!-- Assuming publisher is the third column -->
+                <td>{{ book[3] }}</td> <!-- Assuming total copies is the fourth column -->
+                <td>{{ book[4] }}</td> <!-- Assuming available copies is the fifth column -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No books to display. Click the button to fetch data.</p>
+    {% endif %}
+    
+</body>
+</html>

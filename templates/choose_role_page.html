@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Role</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background for contrast */
+            color: #333; /* Dark text for readability */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 30px; /* Spacing below the heading */
+            font-size: 2.5em; /* Larger font size for the heading */
+            color: #2c3e50; /* Darker color for the heading */
+        }
+        .role-button {
+            padding: 15px 30px;
+            margin: 15px 0; /* Vertical spacing between buttons */
+            font-size: 18px;
+            cursor: pointer;
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #3498db; /* Button background color */
+            color: white; /* Text color for buttons */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .role-button:hover {
+            background-color: #4560fc; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Please Choose Your Role</h1>
+        <!-- Buttons for Admin and Student -->
+        <form action="/login/login1" method="GET">
+            <input type="hidden" name="role" value="admin">
+            <button class="role-button" type="submit">Admin</button>
+        </form>
+        <form action="/login/login1" method="GET">
+            <input type="hidden" name="role" value="student">
+            <button class="role-button" type="submit">Student</button>
+        </form>
+    </div>
+</body>
+</html>

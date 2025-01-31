@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Font family for the entire page */
+            background-color: #f4f4f4; /* Light background for contrast */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Padding around the body */
+        }
+        h1 {
+            text-align: center;
+            background-color: #3498db; /* Background color for heading */
+            padding: 20px; /* Padding inside the heading */
+            border-radius: 8px; /* Rounded corners for heading */
+            margin-top: 0; /* Remove top margin */
+            margin-bottom: 30px; /* Add space below the heading */
+            color: #ffffff; /* Darker color for text */
+        }
+        .greeting {
+            text-align: center;
+            font-size: 20px;
+            color: darkblue;
+            margin: 20px 0; /* Add space above and below greeting */
+            padding: 10px; /* Padding inside the greeting box */
+            background-color: #e7f3fe; /* Light blue background for greeting */
+            border-radius: 5px; /* Rounded corners for greeting box */
+            border: 1px solid #b3d7ff; /* Light blue border around greeting box */
+        }
+        nav {
+            width: 100%; /* Full width for navigation */
+        }
+        nav ul {
+            list-style-type: none; /* Remove bullet points from list */
+            padding: 0; /* Remove padding from list */
+            margin: 0; /* Remove margin from list */
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+        }
+        nav ul li {
+            margin-bottom: 40px; /* Increased space below each menu item */
+        }
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Text color for links */
+            background-color: #3498db; /* Background color for links */
+            padding: 10px 15px; /* Padding inside links */
+            border-radius: 5px; /* Rounded corners for links */
+            font-size: 18px; /* Font size for links */
+            font-weight: bold; /* Bold text for links */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        nav ul li a:hover {
+            background-color: #2980b9; /* Darker shade on hover for links */
+        }
+    </style>
+</head>
+<body>
+    <h1>WELCOME TO THE MENU!!</h1>
+    
+    <!-- Display the username if logged in -->
+    {% if session['logged_in'] %}
+    <div class="greeting">
+        HELLO {{ session['username'].upper() }}
+    </div>
+    {% endif %}
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <!-- Admin-only options -->
+            {% if session['user_role'] == "admin" %}
+            <li><a href="/issue/issue_page">ISSUE BOOK</a></li>
+            <li><a href="/return/return_page">RETURN BOOK</a></li>
+            <li><a href="/insert/insert_page">INSERT PAGE</a></li>
+            {% endif %}
+            
+            <!-- Options available to both admin and user -->
+            <li><a href="/display_books/display_books_page">DISPLAY ALL BOOKS</a></li>
+            <li><a href="/fine/display_fine_page">DISPLAY FINED BOOKS</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME!!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Remove default margin */
+            background-color: #f4f4f4; /* Light background for contrast */
+            font-family: Arial, sans-serif; /* Font family */
+        }
+        .container {
+            text-align: center; /* Center text inside the container */
+            background-color: white; /* White background for content */
+            padding: 30px; /* Padding inside the container */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .welcome-message {
+            font-weight: bold;
+            font-style: italic;
+            font-size: 24px; /* Increased font size for the welcome message */
+            margin-bottom: 20px; /* Space below the welcome message */
+            color: #2c3e50; /* Darker color for text */
+        }
+        .next-button {
+            padding: 10px 20px; /* Padding inside the button */
+            font-size: 16px; /* Font size for button text */
+            cursor: pointer; /* Pointer cursor on hover */
+            background-color: #3498db; /* Button background color */
+            color: white; /* Text color for button */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners for button */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .next-button:hover {
+            background-color: #2980b9; /* Darker shade on hover for button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-message">Welcome to the Library!</div>
+        <form action="/page1/page1_code" method="GET">
+            <button class="next-button" type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>

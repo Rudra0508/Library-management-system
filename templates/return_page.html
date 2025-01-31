@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETURN PAGE</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Remove default margin */
+            background-color: #f4f4f4; /* Light background for contrast */
+            font-family: Arial, sans-serif; /* Font family */
+        }
+        form {
+            background-color: white; /* White background for the form */
+            padding: 30px; /* Padding inside the form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 400px; /* Fixed width for the form */
+        }
+        h2 {
+            text-align: center; /* Center the heading */
+            color: #2c3e50; /* Darker color for text */
+            margin-bottom: 20px; /* Space below heading */
+        }
+        label {
+            display: inline-block;
+            width: 210px; /* Fixed width for labels */
+            margin-bottom: 10px; /* Space below labels */
+        }
+        input[type="text"] {
+            width: calc(100% - 20px); /* Full width minus padding */
+            padding: 10px; /* Padding inside input fields */
+            margin-bottom: 15px; /* Space below input fields */
+            border-radius: 5px; /* Rounded corners */
+            border: 1px solid #ccc; /* Light gray border */
+        }
+        button {
+            padding: 10px 15px; /* Padding inside buttons */
+            font-size: 16px; /* Font size for button text */
+            cursor: pointer; /* Pointer cursor on hover */
+            background-color: #3498db; /* Button background color */
+            color: white; /* Text color for buttons */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners for buttons */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        button:hover {
+            background-color: #2980b9; /* Darker shade on hover for buttons */
+        }
+        ul {
+            list-style-type: none; /* Remove bullet points from list */
+            padding-left: 0; /* Remove left padding from list */
+            margin-top: 20px; /* Space above messages list */
+        }
+        .flash-messages {
+            color: #d9534f; /* Red color for error messages */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Return Page Form -->
+    <form action="/return/SHOW_or_BACK" method="POST">
+        <h2>Return Book</h2>
+
+        <!-- Roll Number -->
+        <label for="roll_no">ENTER ROLL NUMBER:</label>
+        <input type="text" id="roll_no" name="roll_no" value="{{ roll_no }}" required>
+
+        <!-- Book Name -->
+        <label for="book_name">ENTER BOOK NAME:</label>
+        <input type="text" id="book_name" name="book_name" value="{{ book_name }}" required>
+
+        <!-- Date of Issue -->
+        <label for="date_of_issue">DATE OF ISSUE:</label>
+        <input type="text" id="date_of_issue" name="date_of_issue" value="{{ date_of_issue or '' }}">
+
+        <!-- Date of Return -->
+        <label for="date_of_return">DATE OF RETURN:</label>
+        <input type="text" id="date_of_return" name="date_of_return" value="{{ date_of_return or '' }}">
+
+        <!-- Today's Date -->
+        <label for="todays_date">TODAY'S DATE:</label>
+        <input type="text" id="todays_date" name="todays_date" value="{{ todays_date or '' }}">
+
+        <!-- Fine -->
+        <label for="fine">FINE:</label>
+        <input type="text" id="fine" name="fine" value="₹ {{ fine }}" readonly>
+
+        <!-- Hidden input to track the action type -->
+        <input type="hidden" name="action" id="action">
+
+        <!-- Buttons -->
+        <button type="submit" onclick="document.getElementById('action').value='SHOW'">SHOW</button>
+        <button type="submit" formnovalidate onclick="document.getElementById('action').value='BACK'">BACK</button>
+        <button type="submit" onclick="document.getElementById('action').value='CLEAR'">CLEAR</button>
+    </form>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="flash-messages">
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>
